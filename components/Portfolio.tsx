@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useSpring, useMotionValue } from 'motion/react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 
@@ -9,9 +10,14 @@ interface PortfolioProps {
 
 const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
   const [hovered, setHovered] = useState<Project | null>(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [targetPos, setTargetPos] = useState({ x: 0, y: 0 });
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 150 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     const checkScreen = () => setIsLargeScreen(window.innerWidth >= 1024);
@@ -19,27 +25,17 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
     window.addEventListener('resize', checkScreen);
 
     const handleMove = (e: MouseEvent) => {
-      setTargetPos({ x: e.clientX, y: e.clientY });
-    };
-
-    let animationId: number;
-    const lerp = () => {
-      setPos(prev => ({
-        x: prev.x + (targetPos.x - prev.x) * 0.12,
-        y: prev.y + (targetPos.y - prev.y) * 0.12
-      }));
-      animationId = requestAnimationFrame(lerp);
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
     window.addEventListener('mousemove', handleMove);
-    lerp();
 
     return () => {
       window.removeEventListener('resize', checkScreen);
       window.removeEventListener('mousemove', handleMove);
-      cancelAnimationFrame(animationId);
     };
-  }, [targetPos]);
+  }, [mouseX, mouseY]);
 
   const handleEnter = (p: Project) => {
     if (isLargeScreen) setHovered(p);
@@ -53,22 +49,38 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
     <section id="work" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#F9F8F6] relative z-10">
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48">
         
-        <header className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32 reveal">
-          <div className="flex items-center gap-6 md:gap-10 mb-8 md:mb-10">
+        <header className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-6 md:gap-10 mb-8 md:mb-10"
+          >
             <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.5em] md:tracking-[0.7em] opacity-30">Archive // VOL. 01</span>
             <div className="h-px w-16 md:w-24 bg-black/10"></div>
-          </div>
-          <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[11vw] xl:text-[12vw] font-serif italic tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.7] text-[#0A0A0A]">
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[11vw] xl:text-[12vw] font-serif italic tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.7] text-[#0A0A0A]"
+          >
             Selected <br />
             <span className="text-black/5 not-italic font-sans font-black uppercase tracking-tight block">Stories.</span>
-          </h2>
+          </motion.h2>
         </header>
 
         <div className="flex flex-col border-t border-black/10">
           {PROJECTS.map((project, idx) => (
-            <div 
+            <motion.div 
               key={project.id} 
-              className={`group relative border-b border-black/10 py-10 sm:py-16 md:py-20 lg:py-28 flex flex-col md:flex-row items-baseline gap-4 md:gap-16 lg:gap-24 cursor-pointer reveal stagger-${(idx % 4) + 1} transition-all duration-1000 lg:hover:pl-12`}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative border-b border-black/10 py-10 sm:py-16 md:py-20 lg:py-28 flex flex-col md:flex-row items-baseline gap-4 md:gap-16 lg:gap-24 cursor-pointer transition-all duration-1000 lg:hover:pl-12"
               onMouseEnter={() => handleEnter(project)}
               onMouseLeave={handleLeave}
               onClick={() => onProjectClick(project)}
@@ -80,13 +92,21 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
 
               {/* Title */}
               <div className="flex-1">
-                <h3 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[9vw] font-serif italic tracking-tighter leading-[1] md:leading-[0.9] lg:leading-[0.8] transition-all duration-1000 lg:group-hover:translate-x-12">
+                <h3 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[9vw] font-serif italic tracking-tighter leading-[1] md:leading-[0.9] lg:leading-[0.8] transition-all duration-1000 lg:group-hover:translate-x-12 text-balance">
                   {project.title}
                 </h3>
+                {/* Mobile Image Preview */}
+                <div className="mt-6 md:hidden w-full aspect-[16/10] rounded-2xl overflow-hidden border border-black/5">
+                  <img 
+                    src={project.imageUrl} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover grayscale brightness-[1.05]"
+                  />
+                </div>
               </div>
 
               {/* Meta */}
-              <div className="flex items-center justify-between w-full md:w-auto gap-8 md:gap-10 lg:gap-12 md:self-center">
+              <div className="flex items-center justify-between w-full md:w-auto gap-8 md:gap-10 lg:gap-12 md:self-center mt-6 md:mt-0">
                 <span className="text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.5em] lg:tracking-[0.6em] text-black/20 group-hover:text-black transition-all duration-1000 whitespace-nowrap">
                   {project.category}
                 </span>
@@ -99,35 +119,45 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
 
               {/* Subtle background glow on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/[0.01] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-10"></div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Floating Preview Portal - Only on Laptop/Desktop */}
-      {hovered && isLargeScreen && (
-        <div 
-          className="fixed pointer-events-none z-50 overflow-hidden rounded-[2.5rem] transition-all duration-1000 shadow-[0_60px_160px_rgba(0,0,0,0.12)] bg-white"
-          style={{
-            top: pos.y,
-            left: pos.x,
-            width: '320px',
-            height: '420px',
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
-          <img 
-            src={hovered.imageUrl} 
-            alt={hovered.title} 
-            className="w-full h-full object-cover grayscale brightness-[1.1] contrast-[1.05] animate-in fade-in zoom-in duration-1000 scale-110"
-          />
-          <div className="absolute inset-0 bg-black/5 mix-blend-overlay"></div>
-          <div className="absolute bottom-10 left-10 flex flex-col gap-1">
-             <span className="text-[9px] font-mono text-white/40 uppercase tracking-[0.4em]">Project Preview</span>
-             <span className="text-white text-xs font-serif italic">{hovered.title}</span>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {hovered && isLargeScreen && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed pointer-events-none z-50 overflow-hidden rounded-[2.5rem] shadow-[0_60px_160px_rgba(0,0,0,0.12)] bg-white"
+            style={{
+              top: springY,
+              left: springX,
+              width: '320px',
+              height: '420px',
+              x: '-50%',
+              y: '-50%',
+            }}
+          >
+            <motion.img 
+              initial={{ scale: 1.2 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              src={hovered.imageUrl} 
+              alt={hovered.title} 
+              className="w-full h-full object-cover grayscale brightness-[1.1] contrast-[1.05]"
+            />
+            <div className="absolute inset-0 bg-black/5 mix-blend-overlay"></div>
+            <div className="absolute bottom-10 left-10 flex flex-col gap-1">
+               <span className="text-[9px] font-mono text-white/40 uppercase tracking-[0.4em]">Project Preview</span>
+               <span className="text-white text-xs font-serif italic">{hovered.title}</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

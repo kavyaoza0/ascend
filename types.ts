@@ -18,6 +18,7 @@ export interface Service {
   price: string;
   features: string[];
   description: string;
+  imageUrl: string;
 }
 
 export interface Message {

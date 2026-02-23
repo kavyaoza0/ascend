@@ -46,6 +46,7 @@ export const SERVICES: Service[] = [
     title: 'The Simple Launch',
     price: '$159',
     description: 'A beautiful single-page website to get your business online fast.',
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
     features: [
       'Custom modern design',
       'Fully mobile friendly',
@@ -59,6 +60,7 @@ export const SERVICES: Service[] = [
     title: 'The Full Studio',
     price: '$449',
     description: 'A complete custom website with multiple pages and smooth animations.',
+    imageUrl: 'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80&w=800',
     features: [
       'Multi-page architecture',
       'Advanced custom animations',
@@ -72,6 +74,7 @@ export const SERVICES: Service[] = [
     title: 'The Digital Product',
     price: '$999+',
     description: 'A complex web application with custom backend logic and user accounts.',
+    imageUrl: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
     features: [
       'Full-stack development',
       'Database architecture',

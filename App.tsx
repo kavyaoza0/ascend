@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -12,61 +13,92 @@ import { Project } from './types';
 const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Scroll reveal logic
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-visible');
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+    const handleMouseMove = (e: MouseEvent) => {
+      setCursorPos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
-
-    if (!loading) {
-      setTimeout(() => {
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      }, 100);
-    }
+    }, 2500);
 
     return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
       clearTimeout(timer);
-      observer.disconnect();
     };
-  }, [loading]);
-
-  if (loading) {
-    return (
-      <div className="fixed inset-0 z-[2000] bg-[#F9F8F6] flex flex-col items-center justify-center p-12">
-        <h1 className="text-4xl md:text-5xl font-serif italic tracking-tighter opacity-0 animate-fade-in">Ascend.</h1>
-        <div className="mt-12 h-px w-32 bg-black/5 relative overflow-hidden">
-          <div className="absolute inset-y-0 left-0 bg-black w-full origin-left animate-loading-line"></div>
-        </div>
-        <div className="mt-6 opacity-20 text-[9px] font-mono uppercase tracking-[0.5em] animate-pulse">Initializing System</div>
-        <style>{`
-          @keyframes fade-in { 0% { opacity: 0; transform: translateY(20px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
-          @keyframes loading-line { 0% { transform: scaleX(0); transform-origin: left; } 50% { transform: scaleX(1); transform-origin: left; } 50.1% { transform: scaleX(1); transform-origin: right; } 100% { transform: scaleX(0); transform-origin: right; } }
-          .animate-fade-in { animation: fade-in 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-          .animate-loading-line { animation: loading-line 2s cubic-bezier(0.76, 0, 0.24, 1) infinite; }
-        `}</style>
-      </div>
-    );
-  }
+  }, []);
 
   return (
-    <div className="min-h-screen relative text-[#0A0A0A] bg-[#F9F8F6]">
-      <Navbar />
-      <main>
-        <Hero />
-        <Portfolio onProjectClick={setSelectedProject} />
-        <Services />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="min-h-screen relative text-[#0A0A0A] bg-[#F9F8F6] cursor-none overflow-x-hidden">
+      {/* Custom Cursor */}
+      <motion.div 
+        className="custom-cursor hidden md:block"
+        animate={{ 
+          x: cursorPos.x - 10, 
+          y: cursorPos.y - 10,
+          scale: loading ? 0 : 1
+        }}
+        transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.5 }}
+      />
+
+      <AnimatePresence mode="wait">
+        {loading ? (
+          <motion.div 
+            key="loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-[2000] bg-[#0A0A0A] flex flex-col items-center justify-center p-12"
+          >
+            <div className="overflow-hidden mb-4">
+              <motion.h1 
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl md:text-6xl font-serif italic tracking-tighter text-white"
+              >
+                Ascend.
+              </motion.h1>
+            </div>
+            <div className="mt-12 h-px w-32 bg-white/10 relative overflow-hidden">
+              <motion.div 
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+                className="absolute inset-y-0 left-0 bg-white w-full origin-left"
+              ></motion.div>
+            </div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.2 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="mt-6 text-[9px] font-mono uppercase tracking-[0.5em] text-white"
+            >
+              Initializing System
+            </motion.div>
+          </motion.div>
+        ) : (
+          <motion.div 
+            key="main"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Navbar />
+            <main>
+              <Hero />
+              <Portfolio onProjectClick={setSelectedProject} />
+              <Services />
+              <Contact />
+            </main>
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </div>
   );

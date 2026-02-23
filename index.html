@@ -50,8 +50,36 @@
       z-index: 9999;
       pointer-events: none;
       background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-      opacity: 0.05;
-      mix-blend-mode: overlay;
+      opacity: 0.08;
+      mix-blend-mode: multiply;
+      filter: contrast(150%) brightness(100%);
+    }
+
+    /* Editorial Typography */
+    .text-outline {
+      -webkit-text-stroke: 1px currentColor;
+      color: transparent;
+    }
+
+    .text-balance {
+      text-wrap: balance;
+    }
+
+    /* Custom Cursor Base */
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      background: var(--ink);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      mix-blend-mode: difference;
+      transition: transform 0.3s var(--ease-out-expo), width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo);
+      display: none;
+    }
+    @media (hover: hover) {
+      .custom-cursor { display: block; }
     }
 
     /* Subtle Scaffold Grid */
@@ -59,16 +87,22 @@
       position: fixed;
       inset: 0;
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       padding: 0 1.25rem;
       pointer-events: none;
       z-index: 0;
     }
     @media (min-width: 768px) {
-      .scaffold { padding: 0 3rem; }
+      .scaffold { 
+        grid-template-columns: repeat(8, 1fr);
+        padding: 0 3rem; 
+      }
     }
     @media (min-width: 1024px) {
-      .scaffold { padding: 0 4rem; }
+      .scaffold { 
+        grid-template-columns: repeat(12, 1fr);
+        padding: 0 4rem; 
+      }
     }
     @media (min-width: 1280px) {
       .scaffold { padding: 0 6rem; }
