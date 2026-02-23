@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-32 pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-24 relative overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-32 pb-24 relative overflow-hidden">
       <div className="max-w-screen-2xl mx-auto w-full relative z-10">
         
         {/* Intro Tag */}
@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-between items-end mb-8 sm:mb-16 md:mb-24 lg:mb-28"
+          className="flex justify-between items-end mb-12 sm:mb-16 md:mb-20"
         >
           <div className="flex flex-col gap-2 sm:gap-3">
             <span className="text-[8px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.3em] sm:tracking-[0.5em] opacity-30">Independent Design Studio</span>
@@ -30,8 +30,8 @@ const Hero: React.FC = () => {
         </motion.div>
         
         {/* Main Headline */}
-        <div className="mb-10 sm:mb-16 md:mb-24 lg:mb-32">
-          <h1 className="text-[16vw] sm:text-[14vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[9vw] font-serif italic font-light tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A]">
+        <div className="mb-12 sm:mb-16 md:mb-20">
+          <h1 className="text-[16vw] sm:text-[14vw] md:text-[11vw] lg:text-[9vw] xl:text-[8.5vw] font-serif italic font-light tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A]">
             <motion.span 
               initial={{ opacity: 0, y: 100, rotate: 2 }}
               animate={{ opacity: 1, y: 0, rotate: 0 }}
@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Short Bio & CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-20 items-start">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
