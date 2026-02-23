@@ -3,38 +3,38 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 xl:px-32 pt-40 pb-24 relative overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-32 pt-24 sm:pt-32 md:pt-40 pb-16 sm:pb-24 relative overflow-hidden">
       <div className="max-w-screen-2xl mx-auto w-full relative z-10">
         
         {/* Intro Tag */}
-        <div className="flex justify-between items-end mb-12 sm:mb-20 md:mb-24 lg:mb-28 reveal stagger-1">
-          <div className="flex flex-col gap-3">
-            <span className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.5em] opacity-30">Independent Design Studio</span>
-            <div className="h-px w-16 md:w-24 bg-black/10 origin-left scale-x-100 transition-transform duration-1000"></div>
+        <div className="flex justify-between items-end mb-8 sm:mb-16 md:mb-24 lg:mb-28 reveal stagger-1">
+          <div className="flex flex-col gap-2 sm:gap-3">
+            <span className="text-[8px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.3em] sm:tracking-[0.5em] opacity-30">Independent Design Studio</span>
+            <div className="h-px w-12 sm:w-16 md:w-24 bg-black/10 origin-left scale-x-100 transition-transform duration-1000"></div>
           </div>
-          <div className="hidden sm:flex flex-col items-end gap-2 text-[9px] md:text-[10px] font-mono uppercase tracking-[0.4em] opacity-30 text-right">
+          <div className="hidden sm:flex flex-col items-end gap-1 sm:gap-2 text-[8px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.3em] sm:tracking-[0.4em] opacity-30 text-right">
             <span>Ahmedabad // Global Delivery</span>
             <span>2024 Protocol Active</span>
           </div>
         </div>
         
         {/* Main Headline */}
-        <div className="mb-16 sm:mb-20 md:mb-24 lg:mb-32">
-          <h1 className="text-[14vw] sm:text-[12vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[9vw] font-serif italic font-light tracking-tighter leading-[0.9] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A] reveal stagger-2">
+        <div className="mb-10 sm:mb-16 md:mb-24 lg:mb-32">
+          <h1 className="text-[16vw] sm:text-[14vw] md:text-[10vw] lg:text-[8.5vw] xl:text-[9vw] font-serif italic font-light tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A] reveal stagger-2">
             Better <br />
-            <span className="text-black/5 not-italic font-sans font-black uppercase tracking-[-0.05em] block leading-none">Experiences.</span>
+            <span className="text-transparent not-italic font-sans font-black uppercase tracking-[-0.05em] block leading-none mt-2 sm:mt-0" style={{ WebkitTextStroke: '1px rgba(0,0,0,0.15)' }}>Experiences.</span>
           </h1>
         </div>
 
         {/* Short Bio & CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-16 xl:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-start">
           <div className="lg:col-span-7 xl:col-span-8 reveal stagger-3">
-            <p className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-black/40 font-extralight leading-[1.25] md:leading-[1.1] lg:leading-[1.05] tracking-tighter max-w-4xl">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-black/40 font-extralight leading-[1.3] md:leading-[1.2] lg:leading-[1.05] tracking-tighter max-w-4xl">
               I build <span className="text-black italic font-serif">premium websites</span> that help brands look professional, load instantly, and <span className="text-black">sell more.</span>
             </p>
           </div>
           
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col pt-4 md:pt-8 lg:pt-12 reveal stagger-4">
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col pt-2 sm:pt-4 md:pt-8 lg:pt-12 reveal stagger-4">
             <button 
               onClick={() => document.getElementById('work')?.scrollIntoView({behavior: 'smooth'})}
               className="group flex items-center gap-6 sm:gap-8 md:gap-10 self-start outline-none"

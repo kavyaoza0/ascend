@@ -50,10 +50,10 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
   };
 
   return (
-    <section id="work" className="py-24 sm:py-32 md:py-48 lg:py-64 bg-[#F9F8F6] relative z-10">
+    <section id="work" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#F9F8F6] relative z-10">
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48">
         
-        <header className="mb-16 sm:mb-24 md:mb-32 lg:mb-48 xl:mb-56 reveal">
+        <header className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32 reveal">
           <div className="flex items-center gap-6 md:gap-10 mb-8 md:mb-10">
             <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.5em] md:tracking-[0.7em] opacity-30">Archive // VOL. 01</span>
             <div className="h-px w-16 md:w-24 bg-black/10"></div>

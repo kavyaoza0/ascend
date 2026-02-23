@@ -73,7 +73,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 md:py-48 bg-[#F9F8F6] px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48 border-t border-black/5 relative z-10">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#F9F8F6] px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48 border-t border-black/5 relative z-10">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           

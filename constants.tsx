@@ -66,5 +66,18 @@ export const SERVICES: Service[] = [
       'Performance optimization',
       '30 days of free support'
     ]
+  },
+  {
+    id: 'enterprise',
+    title: 'The Digital Product',
+    price: '$999+',
+    description: 'A complex web application with custom backend logic and user accounts.',
+    features: [
+      'Full-stack development',
+      'Database architecture',
+      'User authentication',
+      'Third-party integrations',
+      'Scalable cloud hosting'
+    ]
   }
 ];

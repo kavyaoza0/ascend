@@ -3,9 +3,9 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="py-24 sm:py-32 bg-[#FCFAF7] px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48 border-t border-black/5">
+    <footer className="py-16 sm:py-20 md:py-24 bg-[#FCFAF7] px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48 border-t border-black/5">
       <div className="max-w-7xl mx-auto reveal">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-16 md:gap-24 mb-24 md:mb-32">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 md:gap-16 mb-16 md:mb-24">
           <div className="flex flex-col gap-10">
             <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif italic tracking-tighter leading-none">Ascend.</h2>
             <div className="flex flex-wrap gap-10 sm:gap-12 text-[10px] font-bold uppercase tracking-[0.4em] opacity-30">
