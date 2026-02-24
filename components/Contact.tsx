@@ -74,7 +74,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#F9F8F6] px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48 border-t border-black/5 relative z-10">
+    <section id="contact" className="py-20 sm:py-24 md:py-28 lg:py-32 bg-[#F9F8F6] px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48 border-t border-black/5 relative z-10">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           
@@ -88,11 +88,21 @@ const Contact: React.FC = () => {
             <div className="lg:sticky lg:top-40">
               <span className="text-[10px] font-mono uppercase tracking-[0.5em] opacity-30 mb-6 md:mb-8 block">Inquiry</span>
               <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-serif italic tracking-tighter leading-[0.8] mb-8 md:mb-12">Start a <br /> Dialogue.</h2>
-              <div className="space-y-10 md:space-y-12">
-                 <div className="space-y-3">
+              <div className="space-y-10 md:space-y-16">
+                 <div className="space-y-4">
                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-20 block">Contact Information</span>
                    <a href="mailto:hello@ascendweb.co" className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-serif italic hover:opacity-60 transition-all premium-link pb-1">hello@ascendweb.co</a>
                  </div>
+
+                 <div className="space-y-4">
+                   <span className="text-[10px] font-bold uppercase tracking-widest opacity-20 block">Social Presence</span>
+                   <div className="flex flex-wrap gap-x-8 gap-y-4">
+                     {['LinkedIn', 'Twitter', 'Instagram'].map(social => (
+                       <a key={social} href="#" className="text-base sm:text-lg md:text-xl font-serif italic hover:opacity-60 transition-all premium-link pb-1">{social}</a>
+                     ))}
+                   </div>
+                 </div>
+
                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-black/40 font-light leading-snug max-w-sm border-l-2 border-black/5 pl-6 md:pl-8">
                    Tell me about your business. I'll help you plan the tech, design the interface, and build the final site.
                  </p>

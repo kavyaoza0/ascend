@@ -8,7 +8,7 @@ const Services: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="services" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#0A0A0A] text-[#F9F8F6] rounded-[2.5rem] md:rounded-[5rem] lg:rounded-[8rem] relative z-10 my-4 sm:my-8 md:my-12 overflow-hidden">
+    <section id="services" className="py-20 sm:py-24 md:py-28 lg:py-32 bg-[#0A0A0A] text-[#F9F8F6] rounded-[2rem] md:rounded-[4rem] lg:rounded-[6rem] relative z-10 overflow-hidden">
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 relative z-10">
         
         {/* Header */}

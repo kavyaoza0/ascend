@@ -46,7 +46,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
   };
 
   return (
-    <section id="work" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[#F9F8F6] relative z-10">
+    <section id="work" className="py-20 sm:py-24 md:py-28 lg:py-32 bg-[#F9F8F6] relative z-10">
       <div className="max-w-screen-2xl mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-48">
         
         <header className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32">
@@ -86,35 +86,54 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
               onClick={() => onProjectClick(project)}
             >
               {/* Index */}
-              <div className="min-w-[40px] md:min-w-[60px] lg:min-w-[80px] opacity-10 text-[9px] md:text-[10px] lg:text-[12px] font-mono pt-2 md:pt-4 lg:pt-6 transition-all duration-700 group-hover:text-black group-hover:opacity-100">
+              <motion.div 
+                whileHover={{ scale: 1.2, x: -5 }}
+                className="min-w-[40px] md:min-w-[60px] lg:min-w-[80px] opacity-10 text-[9px] md:text-[10px] lg:text-[12px] font-mono pt-2 md:pt-4 lg:pt-6 transition-all duration-700 group-hover:text-black group-hover:opacity-100"
+              >
                 /0{idx + 1}
-              </div>
+              </motion.div>
 
               {/* Title */}
-              <div className="flex-1">
-                <h3 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[9vw] font-serif italic tracking-tighter leading-[1] md:leading-[0.9] lg:leading-[0.8] transition-all duration-1000 lg:group-hover:translate-x-12 text-balance">
+              <div className="flex-1 overflow-hidden">
+                <motion.h3 
+                  whileHover={{ skewX: -2 }}
+                  className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[9vw] font-serif italic tracking-tighter leading-[1] md:leading-[0.9] lg:leading-[0.8] transition-all duration-1000 lg:group-hover:translate-x-12 text-balance"
+                >
                   {project.title}
-                </h3>
-                {/* Mobile Image Preview */}
-                <div className="mt-6 md:hidden w-full aspect-[16/10] rounded-2xl overflow-hidden border border-black/5">
-                  <img 
+                </motion.h3>
+                {/* Mobile Image Preview with subtle parallax-like entry */}
+                <motion.div 
+                  initial={{ clipPath: 'inset(100% 0 0 0)' }}
+                  whileInView={{ clipPath: 'inset(0% 0 0 0)' }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="mt-6 md:hidden w-full aspect-[16/10] rounded-2xl overflow-hidden border border-black/5"
+                >
+                  <motion.img 
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 1.5 }}
                     src={project.imageUrl} 
                     alt={project.title} 
-                    className="w-full h-full object-cover grayscale brightness-[1.05]"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 brightness-[1.05]"
                   />
-                </div>
+                </motion.div>
               </div>
 
               {/* Meta */}
               <div className="flex items-center justify-between w-full md:w-auto gap-8 md:gap-10 lg:gap-12 md:self-center mt-6 md:mt-0">
-                <span className="text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.5em] lg:tracking-[0.6em] text-black/20 group-hover:text-black transition-all duration-1000 whitespace-nowrap">
+                <motion.span 
+                  whileHover={{ x: 5 }}
+                  className="text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.5em] lg:tracking-[0.6em] text-black/20 group-hover:text-black transition-all duration-1000 whitespace-nowrap"
+                >
                   {project.category}
-                </span>
-                <div className="relative w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 rounded-full border border-black/5 flex items-center justify-center overflow-hidden transition-all duration-1000 lg:group-hover:bg-black lg:group-hover:text-white lg:group-hover:scale-110">
+                </motion.span>
+                <motion.div 
+                  whileHover={{ rotate: 45, scale: 1.1 }}
+                  className="relative w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 rounded-full border border-black/5 flex items-center justify-center overflow-hidden transition-all duration-1000 lg:group-hover:bg-black lg:group-hover:text-white"
+                >
                   <svg className="w-4 h-4 md:w-5 md:h-5 lg:w-8 lg:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
-                </div>
+                </motion.div>
               </div>
 
               {/* Subtle background glow on hover */}
@@ -143,12 +162,12 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
             }}
           >
             <motion.img 
-              initial={{ scale: 1.2 }}
-              animate={{ scale: 1 }}
+              initial={{ scale: 1.2, filter: 'grayscale(100%)' }}
+              animate={{ scale: 1, filter: 'grayscale(0%)' }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
               src={hovered.imageUrl} 
               alt={hovered.title} 
-              className="w-full h-full object-cover grayscale brightness-[1.1] contrast-[1.05]"
+              className="w-full h-full object-cover brightness-[1.1] contrast-[1.05]"
             />
             <div className="absolute inset-0 bg-black/5 mix-blend-overlay"></div>
             <div className="absolute bottom-10 left-10 flex flex-col gap-1">

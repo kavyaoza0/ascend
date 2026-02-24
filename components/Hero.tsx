@@ -1,21 +1,69 @@
 
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 
 const Hero: React.FC = () => {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+  const rotate = useTransform(scrollY, [0, 500], [0, 45]);
+
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-32 pb-24 relative overflow-hidden">
-      <div className="max-w-screen-2xl mx-auto w-full relative z-10">
+    <section className="min-h-[90vh] flex flex-col px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-24 sm:pt-28 md:pt-32 pb-16 relative overflow-hidden bg-[#FBFBFB]">
+      {/* Subtle Grid Background */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none -z-10" 
+        style={{ 
+          backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`,
+          backgroundSize: '40px 40px' 
+        }}
+      ></div>
+
+      {/* 3D Floating Element */}
+      <motion.div 
+        style={{ y: y2, rotateZ: rotate }}
+        className="absolute top-1/4 right-10 md:right-32 w-32 h-32 md:w-64 md:h-64 border border-black/[0.03] rounded-2xl bg-white/40 backdrop-blur-3xl -z-10 hidden lg:block"
+        animate={{ 
+          rotateX: [0, 15, 0],
+          rotateY: [0, 25, 0],
+          y: [0, -20, 0]
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-1/2 h-px bg-black/10"></div>
+          <div className="h-1/2 w-px bg-black/10"></div>
+        </div>
+      </motion.div>
+
+      {/* Subtle Scanning Line */}
+      <motion.div 
+        animate={{ y: ["-100%", "200%"] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 w-full h-1/3 bg-gradient-to-b from-transparent via-black/[0.01] to-transparent pointer-events-none -z-10"
+      />
+
+      {/* Large Background Text */}
+      <motion.div 
+        style={{ y: y1 }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-sans font-black uppercase tracking-tighter text-black/[0.01] pointer-events-none -z-20 select-none"
+      >
+        Ascend
+      </motion.div>
+
+      <div className="max-w-screen-2xl mx-auto w-full relative z-10 flex-grow flex flex-col justify-center">
         
         {/* Intro Tag */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-between items-end mb-12 sm:mb-16 md:mb-20"
+          className="flex justify-between items-end mb-10 sm:mb-12 md:mb-16"
         >
           <div className="flex flex-col gap-2 sm:gap-3">
-            <span className="text-[8px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.3em] sm:tracking-[0.5em] opacity-30">Independent Design Studio</span>
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-[8px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.3em] sm:tracking-[0.5em] opacity-30">Independent Design Studio</span>
+            </div>
             <motion.div 
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -25,26 +73,26 @@ const Hero: React.FC = () => {
           </div>
           <div className="hidden sm:flex flex-col items-end gap-1 sm:gap-2 text-[8px] sm:text-[9px] md:text-[10px] font-mono uppercase tracking-[0.3em] sm:tracking-[0.4em] opacity-30 text-right">
             <span>Ahmedabad // Global Delivery</span>
-            <span>2024 Protocol Active</span>
+            <span>Digital Craftsmanship // EST 2025</span>
           </div>
         </motion.div>
         
         {/* Main Headline */}
-        <div className="mb-12 sm:mb-16 md:mb-20">
+        <div className="mb-10 sm:mb-12 md:mb-16 perspective-[1000px]">
           <h1 className="text-[16vw] sm:text-[14vw] md:text-[11vw] lg:text-[9vw] xl:text-[8.5vw] font-serif italic font-light tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A]">
             <motion.span 
-              initial={{ opacity: 0, y: 100, rotate: 2 }}
-              animate={{ opacity: 1, y: 0, rotate: 0 }}
+              initial={{ opacity: 0, y: 100, rotateX: 45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="block"
+              className="block origin-bottom"
             >
               Better
             </motion.span>
             <motion.span 
-              initial={{ opacity: 0, y: 100, rotate: -2 }}
-              animate={{ opacity: 1, y: 0, rotate: 0 }}
+              initial={{ opacity: 0, y: 100, rotateX: -45 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-transparent not-italic font-sans font-black uppercase tracking-[-0.05em] block leading-none mt-2 sm:mt-0" 
+              className="text-transparent not-italic font-sans font-black uppercase tracking-[-0.05em] block leading-none mt-2 sm:mt-0 origin-top" 
               style={{ WebkitTextStroke: '1px rgba(0,0,0,0.15)' }}
             >
               Experiences.
@@ -69,7 +117,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 xl:col-span-4 flex flex-col pt-2 sm:pt-4 md:pt-8 lg:pt-12"
+            className="lg:col-span-5 xl:col-span-4 flex flex-col pt-2 sm:pt-4 md:pt-6 lg:pt-8"
           >
             <button 
               onClick={() => document.getElementById('work')?.scrollIntoView({behavior: 'smooth'})}
@@ -95,6 +143,17 @@ const Hero: React.FC = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-24 right-6 sm:right-12 md:right-16 lg:right-24 xl:right-32 hidden lg:flex flex-col items-center gap-4"
+      >
+        <span className="text-[8px] font-mono uppercase tracking-[0.4em] opacity-20 [writing-mode:vertical-rl]">Scroll Down</span>
+        <div className="w-px h-12 bg-gradient-to-b from-black/20 to-transparent"></div>
+      </motion.div>
       
       {/* Visual Accent */}
       <motion.div 
@@ -107,33 +166,21 @@ const Hero: React.FC = () => {
         className="absolute top-1/2 right-[-15vw] md:right-[-10vw] lg:right-[-5vw] w-[80vw] md:w-[60vw] lg:w-[45vw] h-[80vw] md:h-[60vw] lg:h-[45vw] bg-black/[0.015] rounded-full blur-[70px] md:blur-[110px] lg:blur-[140px] pointer-events-none -z-10"
       ></motion.div>
 
-      {/* Marquee */}
+      {/* Hero Footer */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-0 left-0 w-full py-6 sm:py-8 md:py-10 border-t border-black/[0.03] overflow-hidden whitespace-nowrap"
+        className="absolute bottom-0 left-0 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 py-8 border-t border-black/[0.03] flex justify-between items-center"
       >
-        <div className="inline-block animate-marquee">
-          {[1, 2, 3, 4].map((i) => (
-            <span key={i} className="inline-flex items-center">
-              <span className="text-[10px] sm:text-[11px] md:text-[12px] font-mono uppercase tracking-[0.8em] opacity-20 px-12 sm:px-20">Available for 2024 Projects</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-black/10"></span>
-              <span className="text-[10px] sm:text-[11px] md:text-[12px] font-mono uppercase tracking-[0.8em] opacity-20 px-12 sm:px-20">Digital Excellence Studio</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-black/10"></span>
-            </span>
+        <div className="flex gap-8">
+          {['Instagram', 'LinkedIn', 'Twitter'].map((social) => (
+            <a key={social} href="#" className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.3em] opacity-20 hover:opacity-100 transition-opacity">{social}</a>
           ))}
         </div>
-        <style>{`
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            display: inline-block;
-            animation: marquee 40s linear infinite;
-          }
-        `}</style>
+        <div className="hidden sm:block">
+          <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.3em] opacity-20">© 2025 Ascend Web Co. All Rights Reserved.</span>
+        </div>
       </motion.div>
     </section>
   );
