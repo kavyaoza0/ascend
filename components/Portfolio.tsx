@@ -68,7 +68,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
             className="text-5xl sm:text-7xl md:text-8xl lg:text-[11vw] xl:text-[12vw] font-serif italic tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.7] text-[#0A0A0A]"
           >
             Selected <br />
-            <span className="text-black/5 not-italic font-sans font-black uppercase tracking-tight block">Stories.</span>
+            <span className="text-black/5 not-italic font-sans font-black uppercase tracking-normal block">Stories.</span>
           </motion.h2>
         </header>
 

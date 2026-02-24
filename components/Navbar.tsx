@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
             onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
             className="text-xl sm:text-2xl font-serif italic tracking-tighter outline-none hover:opacity-60 transition-opacity"
           >
-            Ascend Web Co.
+            LaunchLayer
           </motion.button>
         </div>
 
@@ -107,7 +107,7 @@ const Navbar: React.FC = () => {
                 className="mt-12 pt-12 border-t border-black/5 flex flex-col gap-4"
               >
                 <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-30">Get in touch</span>
-                <a href="mailto:hello@ascendweb.co" className="text-xl font-serif italic">hello@ascendweb.co</a>
+                <a href="mailto:hello@launchlayer.co" className="text-xl font-serif italic">hello@launchlayer.co</a>
               </motion.div>
             </div>
           </motion.div>

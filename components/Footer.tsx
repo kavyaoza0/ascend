@@ -15,12 +15,12 @@ const Footer: React.FC = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif italic tracking-tighter leading-none"
             >
-              Ascend.
+              LaunchLayer.
             </motion.h2>
             <div className="flex flex-col gap-4">
               <span className="text-[10px] font-mono uppercase tracking-[0.5em] opacity-30">Get in touch</span>
-              <a href="mailto:hello@ascendweb.co" className="text-2xl sm:text-3xl md:text-4xl font-serif italic hover:opacity-60 transition-all premium-link self-start">
-                hello@ascendweb.co
+              <a href="mailto:hello@launchlayer.co" className="text-2xl sm:text-3xl md:text-4xl font-serif italic hover:opacity-60 transition-all premium-link self-start">
+                hello@launchlayer.co
               </a>
             </div>
           </div>

@@ -60,7 +60,7 @@ const App: React.FC = () => {
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-4xl md:text-6xl font-serif italic tracking-tighter text-white"
               >
-                Ascend.
+                LaunchLayer.
               </motion.h1>
             </div>
             <div className="mt-12 h-px w-32 bg-white/10 relative overflow-hidden">

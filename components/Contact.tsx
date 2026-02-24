@@ -91,7 +91,7 @@ const Contact: React.FC = () => {
               <div className="space-y-10 md:space-y-16">
                  <div className="space-y-4">
                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-20 block">Contact Information</span>
-                   <a href="mailto:hello@ascendweb.co" className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-serif italic hover:opacity-60 transition-all premium-link pb-1">hello@ascendweb.co</a>
+                   <a href="mailto:hello@launchlayer.co" className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-serif italic hover:opacity-60 transition-all premium-link pb-1">hello@launchlayer.co</a>
                  </div>
 
                  <div className="space-y-4">

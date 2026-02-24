@@ -28,7 +28,7 @@ const Services: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl sm:text-8xl md:text-9xl lg:text-[10vw] font-serif italic tracking-tighter leading-[0.85] font-light"
+            className="text-5xl sm:text-8xl md:text-9xl lg:text-[10vw] font-serif italic tracking-tighter leading-[0.85] font-light"
           >
             Digital <br />
             <span className="text-white/40 not-italic font-sans font-medium tracking-tight block mt-2">Capabilities.</span>

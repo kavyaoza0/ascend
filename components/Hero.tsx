@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
         style={{ y: y1 }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-sans font-black uppercase tracking-tighter text-black/[0.01] pointer-events-none -z-20 select-none"
       >
-        Ascend
+        LaunchLayer
       </motion.div>
 
       <div className="max-w-screen-2xl mx-auto w-full relative z-10 flex-grow flex flex-col justify-center">
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
         
         {/* Main Headline */}
         <div className="mb-10 sm:mb-12 md:mb-16 perspective-[1000px]">
-          <h1 className="text-[16vw] sm:text-[14vw] md:text-[11vw] lg:text-[9vw] xl:text-[8.5vw] font-serif italic font-light tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A]">
+          <h1 className="text-[11vw] sm:text-[14vw] md:text-[11vw] lg:text-[9vw] xl:text-[8.5vw] font-serif italic font-light tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A]">
             <motion.span 
               initial={{ opacity: 0, y: 100, rotateX: 45 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
@@ -92,7 +92,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 100, rotateX: -45 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
               transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-transparent not-italic font-sans font-black uppercase tracking-[-0.05em] block leading-none mt-2 sm:mt-0 origin-top" 
+              className="text-transparent not-italic font-sans font-black uppercase tracking-[-0.02em] block leading-none mt-2 sm:mt-0 origin-top" 
               style={{ WebkitTextStroke: '1px rgba(0,0,0,0.15)' }}
             >
               Experiences.
@@ -179,7 +179,7 @@ const Hero: React.FC = () => {
           ))}
         </div>
         <div className="hidden sm:block">
-          <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.3em] opacity-20">© 2025 Ascend Web Co. All Rights Reserved.</span>
+          <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.3em] opacity-20">© 2025 LaunchLayer. All Rights Reserved.</span>
         </div>
       </motion.div>
     </section>
