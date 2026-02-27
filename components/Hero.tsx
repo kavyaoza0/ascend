@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
   const rotate = useTransform(scrollY, [0, 500], [0, 45]);
 
   return (
-    <section className="min-h-[90vh] flex flex-col px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-24 sm:pt-28 md:pt-32 pb-16 relative overflow-hidden bg-[#FBFBFB]">
+    <section className="min-h-[70vh] flex flex-col px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 pt-16 sm:pt-20 md:pt-24 pb-8 relative overflow-hidden bg-[#FBFBFB]">
       {/* Subtle Grid Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none -z-10" 
         style={{ 
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-between items-end mb-10 sm:mb-12 md:mb-16"
+          className="flex justify-between items-end mb-4 sm:mb-6 md:mb-8"
         >
           <div className="flex flex-col gap-2 sm:gap-3">
             <div className="flex items-center gap-3">
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
         </motion.div>
         
         {/* Main Headline */}
-        <div className="mb-10 sm:mb-12 md:mb-16 perspective-[1000px]">
+        <div className="mb-4 sm:mb-6 md:mb-8 perspective-[1000px]">
           <h1 className="text-[11vw] sm:text-[14vw] md:text-[11vw] lg:text-[9vw] xl:text-[8.5vw] font-serif italic font-light tracking-tighter leading-[0.85] md:leading-[0.8] lg:leading-[0.75] text-[#0A0A0A]">
             <motion.span 
               initial={{ opacity: 0, y: 100, rotateX: 45 }}
@@ -144,17 +144,6 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-24 right-6 sm:right-12 md:right-16 lg:right-24 xl:right-32 hidden lg:flex flex-col items-center gap-4"
-      >
-        <span className="text-[8px] font-mono uppercase tracking-[0.4em] opacity-20 [writing-mode:vertical-rl]">Scroll Down</span>
-        <div className="w-px h-12 bg-gradient-to-b from-black/20 to-transparent"></div>
-      </motion.div>
-      
       {/* Visual Accent */}
       <motion.div 
         animate={{ 
@@ -165,23 +154,6 @@ const Hero: React.FC = () => {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/2 right-[-15vw] md:right-[-10vw] lg:right-[-5vw] w-[80vw] md:w-[60vw] lg:w-[45vw] h-[80vw] md:h-[60vw] lg:h-[45vw] bg-black/[0.015] rounded-full blur-[70px] md:blur-[110px] lg:blur-[140px] pointer-events-none -z-10"
       ></motion.div>
-
-      {/* Hero Footer */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-0 left-0 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 py-8 border-t border-black/[0.03] flex justify-between items-center"
-      >
-        <div className="flex gap-8">
-          {['Instagram', 'LinkedIn', 'Twitter'].map((social) => (
-            <a key={social} href="#" className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.3em] opacity-20 hover:opacity-100 transition-opacity">{social}</a>
-          ))}
-        </div>
-        <div className="hidden sm:block">
-          <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-[0.3em] opacity-20">© 2025 LaunchLayer. All Rights Reserved.</span>
-        </div>
-      </motion.div>
     </section>
   );
 };

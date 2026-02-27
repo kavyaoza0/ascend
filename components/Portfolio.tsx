@@ -76,9 +76,13 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
           {PROJECTS.map((project, idx) => (
             <motion.div 
               key={project.id} 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              initial="initial"
+              whileInView="active"
+              viewport={{ amount: 0.4, margin: "-10% 0px -10% 0px" }}
+              variants={{
+                initial: { opacity: 0, y: 50 },
+                active: { opacity: 1, y: 0 }
+              }}
               transition={{ duration: 1, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="group relative border-b border-black/10 py-10 sm:py-16 md:py-20 lg:py-28 flex flex-col md:flex-row items-baseline gap-4 md:gap-16 lg:gap-24 cursor-pointer transition-all duration-1000 lg:hover:pl-12"
               onMouseEnter={() => handleEnter(project)}
@@ -87,8 +91,12 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
             >
               {/* Index */}
               <motion.div 
+                variants={{
+                  initial: { opacity: 0.1, x: 0 },
+                  active: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+                }}
                 whileHover={{ scale: 1.2, x: -5 }}
-                className="min-w-[40px] md:min-w-[60px] lg:min-w-[80px] opacity-10 text-[9px] md:text-[10px] lg:text-[12px] font-mono pt-2 md:pt-4 lg:pt-6 transition-all duration-700 group-hover:text-black group-hover:opacity-100"
+                className="min-w-[40px] md:min-w-[60px] lg:min-w-[80px] text-[9px] md:text-[10px] lg:text-[12px] font-mono pt-2 md:pt-4 lg:pt-6 transition-all duration-700 group-hover:text-black group-hover:opacity-100"
               >
                 /0{idx + 1}
               </motion.div>
@@ -96,24 +104,31 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
               {/* Title */}
               <div className="flex-1 overflow-hidden">
                 <motion.h3 
+                  variants={{
+                    initial: { x: 0, color: 'rgba(0,0,0,0.4)' },
+                    active: { x: 0, color: 'rgba(0,0,0,1)', transition: { duration: 0.8 } }
+                  }}
                   whileHover={{ skewX: -2 }}
                   className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[9vw] font-serif italic tracking-tighter leading-[1] md:leading-[0.9] lg:leading-[0.8] transition-all duration-1000 lg:group-hover:translate-x-12 text-balance"
                 >
                   {project.title}
                 </motion.h3>
-                {/* Mobile Image Preview with subtle parallax-like entry */}
+                {/* Mobile/Tablet Image Preview with scroll-triggered color reveal */}
                 <motion.div 
                   initial={{ clipPath: 'inset(100% 0 0 0)' }}
                   whileInView={{ clipPath: 'inset(0% 0 0 0)' }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="mt-6 md:hidden w-full aspect-[16/10] rounded-2xl overflow-hidden border border-black/5"
+                  className="mt-6 lg:hidden w-full aspect-[16/10] rounded-2xl overflow-hidden border border-black/5"
                 >
                   <motion.img 
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 1.5 }}
+                    variants={{
+                      initial: { filter: 'grayscale(100%)', scale: 1.1 },
+                      active: { filter: 'grayscale(0%)', scale: 1, transition: { duration: 1.2 } }
+                    }}
                     src={project.imageUrl} 
                     alt={project.title} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 brightness-[1.05]"
+                    className="w-full h-full object-cover brightness-[1.05]"
                   />
                 </motion.div>
               </div>
@@ -121,8 +136,12 @@ const Portfolio: React.FC<PortfolioProps> = ({ onProjectClick }) => {
               {/* Meta */}
               <div className="flex items-center justify-between w-full md:w-auto gap-8 md:gap-10 lg:gap-12 md:self-center mt-6 md:mt-0">
                 <motion.span 
+                  variants={{
+                    initial: { opacity: 0.2, x: 0 },
+                    active: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+                  }}
                   whileHover={{ x: 5 }}
-                  className="text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.5em] lg:tracking-[0.6em] text-black/20 group-hover:text-black transition-all duration-1000 whitespace-nowrap"
+                  className="text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.5em] lg:tracking-[0.6em] text-black transition-all duration-1000 whitespace-nowrap"
                 >
                   {project.category}
                 </motion.span>
